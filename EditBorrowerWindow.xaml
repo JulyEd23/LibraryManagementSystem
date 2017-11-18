@@ -1,0 +1,124 @@
+﻿<Window x:Class="LIBRARYMANAGEMENTPART2.EditBorrowerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LIBRARYMANAGEMENTPART2"
+        mc:Ignorable="d"
+        Title="EditBorrowerWindow" Height="Auto" Width="Auto" WindowState="Maximized" Background="#FFF1D8" WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#4950DE">
+            <TextBlock Text="Edit Borrower"
+                       Foreground="White"
+                       FontSize="30"
+                       FontWeight="Bold"
+                       Padding="20,0,0,0">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="1"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <Button HorizontalAlignment="Right"
+                    Background="Transparent"
+                    Name="ButtonEditBorrowerWindowClose"
+                    Click="ButtonEditBorrowerWindowClose_Click">
+                <Button.Content>
+                    <Path Data="F1 M 328.101,80.0001L 80,328.101L 328.101,576.203" Width="40" Height="40" Stroke="White" StrokeThickness="9" Stretch="Uniform" UseLayoutRounding="False"/>
+                </Button.Content>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Vertical" VerticalAlignment="Center" Margin="20">
+                    <TextBlock Text="Lastname"/>
+                    <TextBox Text="{Binding Path=BorrowerLastName}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" Margin="20">
+                    <TextBlock Text="Firstname"/>
+                    <TextBox Text="{Binding Path=BorrowerFirstName}"/>
+                </StackPanel>
+                <GroupBox Grid.Row="2">
+                    <GroupBox.Header>
+                        <TextBlock Text="Gender"/>
+                    </GroupBox.Header>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Content="Male"
+                                     Name="RadioButtonMale"
+                                     Grid.Column="0"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center" Checked="RadioButtonMale_Checked"/>
+                        <RadioButton Content="Female"
+                                     Name="RadioButtonFemale"
+                                     Grid.Column="1"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center" Checked="RadioButtonFemale_Checked"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Grid.Row="3">
+                    <GroupBox.Header>
+                        <TextBlock Text="Borrower Type"/>
+                    </GroupBox.Header>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Content="Student"
+                                     Name="RadioButtonStudent"
+                                     Grid.Column="0"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center" Checked="RadioButtonStudent_Checked"/>
+                        <RadioButton Content="Teacher"
+                                     Name="RadioButtonTeacher"
+                                     Grid.Column="1"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center" Checked="RadioButtonTeacher_Checked"/>
+                    </Grid>
+                </GroupBox>
+                <StackPanel Orientation="Vertical" Grid.Row="4" VerticalAlignment="Center" Margin="20">
+                    <TextBlock Text="ID Number"/>
+                    <TextBlock Background="WhiteSmoke"
+                               Name="TextBlockIDNumber"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="200"
+                        Background="#4950DE"
+                        Name="ButtonSaveEditBorrower"
+                        Click="ButtonSaveEditBorrower_Click">
+                    <Button.Content>
+                        <TextBlock Text="Save"
+                                   FontSize="30"
+                                   Foreground="White"
+                                   FontWeight="Bold"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

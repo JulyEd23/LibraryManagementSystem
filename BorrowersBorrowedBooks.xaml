@@ -1,0 +1,227 @@
+﻿<Window x:Class="LIBRARYMANAGEMENTPART2.BorrowersBorrowedBooks"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LIBRARYMANAGEMENTPART2"
+        mc:Ignorable="d"
+        Title="BorrowersBorrowedBooks" Height="Auto" Width="Auto" WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#4950DE">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Borrowed Books"
+                       VerticalAlignment="Center"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       FontSize="30"
+                       Margin="20,0,0,0"
+                       Grid.Column="0"/>
+            <Button Grid.Column="1"
+                    Background="Transparent"
+                    Name="ButtonExit"
+                    Click="ButtonExit_Click">
+                <Button.Content>
+                    <Path Data="F1 M 328.101,80.0001L 80,328.101L 328.101,576.203" Width="40" Height="40" Stroke="White" StrokeThickness="9" Stretch="Uniform" UseLayoutRounding="False"/>
+                </Button.Content>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="1" Background="#FFF1D8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Text="Borrower's Firstname: "/>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           Text="Borrower's Lastname: "/>
+                <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           Text="Borrower's Gender: "/>
+                <TextBlock Grid.Row="3"
+                           Grid.Column="0"
+                           Text="Borrower's ID Number: "/>
+                <TextBlock Grid.Row="4"
+                           Grid.Column="0"
+                           Text="Borrower's Type: "/>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="1"
+                           Margin="100,0,0,0"
+                           Text="{Binding Path=SelectedBorrower.BorrowerFirstName}"/>
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="100,0,0,0"
+                           Text="{Binding Path=SelectedBorrower.BorrowerLastName}"/>
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="100,0,0,0"
+                           Text="{Binding Path=SelectedBorrower.BorrowerGender}"/>
+                <TextBlock Grid.Row="3"
+                           Grid.Column="1"
+                           Margin="100,0,0,0"
+                           Text="{Binding Path=SelectedBorrower.BorrowerIDNumber}"/>
+                <TextBlock Grid.Row="4"
+                           Grid.Column="1"
+                           Margin="100,0,0,0"
+                           Text="{Binding Path=SelectedBorrower.BorrowerType}"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <ListView ItemsSource="{Binding Path=SelectedBorrower.BORROWERBOOKSBORROWED}"
+                          SelectedItem="{Binding Path=SelectedReturnBook}"
+                          SelectionChanged="ListView_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="Title"/>
+                                    </GridViewColumn.Header>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=BookTitle}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="Category"/>
+                                    </GridViewColumn.Header>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=BookCategory}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="Author(s)"/>
+                                    </GridViewColumn.Header>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ListBox ItemsSource="{Binding Path=BOOKAUTHOR}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="ID Number"/>
+                                    </GridViewColumn.Header>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=BookIDNumber}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="Date Borrowed"/>
+                                    </GridViewColumn.Header>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=BookDateBorrowed,StringFormat=\{0:MMMM d\, yyyy\}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="Date Deadline"/>
+                                    </GridViewColumn.Header>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=BookDateDeadline, StringFormat=\{0:MMMM d\, yyyy\}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Date Return: "
+                             Grid.Row="0"
+                             Grid.Column="0"/>
+                    <TextBlock Text="Fine per exceeded day: "
+                             Grid.Row="1"
+                             Grid.Column="0"/>
+                    <TextBlock Text="Day(s) exceeded: "
+                             Grid.Row="2"
+                             Grid.Column="0"/>
+                    <TextBlock Text="Total Fine: "
+                             Grid.Row="3"
+                             Grid.Column="0"/>
+                    <DatePicker Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="100,0,0,0"
+                                SelectedDate="{Binding Path=violatordatefined, Mode=OneWayToSource}"
+                                SelectedDateFormat="Long"
+                                Name="DatePickerSelectedDateReturn"
+                                SelectedDateChanged="DatePickerSelectedDateReturn_SelectedDateChanged"/>
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="1"
+                               Margin="100,0,0,0"
+                               Name="TextBlockFinePerExceedDay"/>
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="1"
+                               Margin="100,0,0,0"
+                               Name="TextBlockDaysExceeded"/>
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="1"
+                               Margin="100,0,0,0"
+                               Text="{Binding Path=violatorfine, Mode=OneWayToSource}"
+                               Name="TextBlockTotalFines"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Button Width="250"
+                            Height="40"
+                            Background="#4950DE"
+                            Name="ButtonReturnBook"
+                            Click="ButtonReturnBook_Click">
+                        <Button.Content>
+                            <TextBlock Text="Return Book"
+                                       Foreground="White"
+                                       FontSize="25"
+                                       FontWeight="Bold"/>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

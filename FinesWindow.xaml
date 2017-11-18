@@ -1,0 +1,171 @@
+﻿<Window x:Class="LIBRARYMANAGEMENTPART2.FinesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LIBRARYMANAGEMENTPART2"
+        mc:Ignorable="d"
+        Title="FinesWindow" Height="Auto" Width="Auto" WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#4950DE">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="Fines"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       FontSize="30"
+                       VerticalAlignment="Center"
+                       Margin="10,0,0,0">
+                
+            </TextBlock>
+            <Button Grid.Column="1"
+                    Background="Transparent"
+                    Name="ButtonExit"
+                    Click="ButtonExit_Click">
+                <Button.Content>
+                    <Path Data="F1 M 328.101,80.0001L 80,328.101L 328.101,576.203" Width="40" Height="40" Stroke="White" StrokeThickness="9" Stretch="Uniform" UseLayoutRounding="False"/>
+                </Button.Content>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="moneybooks.jpg"
+                            Opacity="1"/>
+            </Grid.Background>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,0">
+                    <GradientStop Color="Transparent" Offset="5"/>
+                    <GradientStop Color="#FFEAD3" Offset="0.7"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <ListView ItemsSource="{Binding Path=VIOLATORSLIST}"
+                          Background="Transparent"
+                          Name="ListViewViolatorsList">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="Lastname"/>
+                                    </GridViewColumn.Header>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=ViolatorLastName}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="Firstname"/>
+                                    </GridViewColumn.Header>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=ViolatorFirstName}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="Date Fined"/>
+                                    </GridViewColumn.Header>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=ViolatorDateFined, StringFormat=\{0:MMMM d\, yyyy\}}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.Header>
+                                        <TextBlock Text="Fine"/>
+                                    </GridViewColumn.Header>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=ViolatorTotalFine}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Sort">
+                                <MenuItem Header="Lastname">
+                                    <MenuItem Header="Ascending"
+                                              Name="LastNameAscending"
+                                              Click="LastNameAscending_Click"/>
+                                    <MenuItem Header="Descending"
+                                              Name="LastNameDescending"
+                                              Click="LastNameDescending_Click"/>
+                                </MenuItem>
+                                <MenuItem Header="Firstname">
+                                    <MenuItem Header="Ascending"
+                                              Name="FirstNameAscending"
+                                              Click="FirstNameAscending_Click"/>
+                                    <MenuItem Header="Descending"
+                                              Name="FirstNameDescending"
+                                              Click="FirstNameDescending_Click"/>
+                                </MenuItem>
+                                <MenuItem Header="Date Fined">
+                                    <MenuItem Header="Ascending"
+                                              Name="DateFinedAscending"
+                                              Click="DateFinedAscending_Click"/>
+                                    <MenuItem Header="Descending"
+                                              Name="DateFinedDescending"
+                                              Click="DateFinedDescending_Click"/>
+                                </MenuItem>
+                                <MenuItem Header="Fine">
+                                    <MenuItem Header="Ascending"
+                                              Name="FineAscending"
+                                              Click="FineAscending_Click"/>
+                                    <MenuItem Header="Descending"
+                                              Name="FineDescending"
+                                              Click="FineDescending_Click"/>
+                                </MenuItem>
+                            </MenuItem>
+                            <MenuItem Header="Default Sort">
+                                
+                            </MenuItem>
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                </ListView>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <StackPanel Orientation="Vertical"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+                        <TextBlock Text="Total Fine:"
+                                   FontSize="30"
+                                   FontWeight="Bold"/>
+                        <TextBlock Name="TextBlockTotalFine"
+                                   Margin="10"
+                                   HorizontalAlignment="Center"
+                                   FontSize="20"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

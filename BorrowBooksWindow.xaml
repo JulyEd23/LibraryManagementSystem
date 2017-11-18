@@ -1,0 +1,258 @@
+﻿<Window x:Class="LIBRARYMANAGEMENTPART2.BorrowBooksWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LIBRARYMANAGEMENTPART2"
+        mc:Ignorable="d"
+        Title="BorrowBooksWindow" Height="Auto" Width="Auto" Background="#FFF1D8" WindowState="Normal" WindowStyle="SingleBorderWindow" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="101*"/>
+            <RowDefinition Height="386*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#4950DE">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <TextBlock Text="Borrow Books"
+                       Foreground="White"
+                       FontSize="30"
+                       FontWeight="Bold"
+                       Padding="20,0,0,0">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="1"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Button Name="ButtonExit"
+                        Click="ButtonExit_Click"
+                        Background="Transparent">
+                    <Button.Content>
+                        <Path Data="F1 M 328.101,80.0001L 80,328.101L 328.101,576.203" Width="40" Height="40" Stroke="White" StrokeThickness="9" Stretch="Uniform" UseLayoutRounding="False"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Search: "
+                               FontWeight="Bold"
+                               Grid.Column="0"/>
+                    <TextBox Grid.Column="1"
+                             Text="{Binding Path=SearchTextBooks, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <ListView Background="Transparent"
+                          ItemsSource="{Binding Path=BOOKSLIST}"
+                          SelectedItem="{Binding Path=SelectedBook}">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Title"/>
+                                        </GridViewColumn.Header>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=BookTitle}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Category"/>
+                                        </GridViewColumn.Header>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=BookCategory}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Authors"/>
+                                        </GridViewColumn.Header>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ListBox ItemsSource="{Binding Path=BOOKAUTHOR}"
+                                                     Background="Transparent"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="ID Number"/>
+                                        </GridViewColumn.Header>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=BookIDNumber}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Availability"/>
+                                        </GridViewColumn.Header>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=BookAvailability}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                        <ListView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Sort">
+                                    <MenuItem Header="Title">
+                                        <MenuItem Header="Ascending"
+                                                  Name="TitleAscending"
+                                                  Click="TitleAscending_Click"/>
+                                        <MenuItem Header="Descending"
+                                                  Name="TitleDescscending"
+                                                  Click="TitleDescscending_Click"/>
+                                    </MenuItem>
+                                    <MenuItem Header="Category">
+                                        <MenuItem Header="Ascending"
+                                                  Name="CategoryAscending"
+                                                  Click="CategoryAscending_Click"/>
+                                        <MenuItem Header="Descending"
+                                                  Name="CategoryDescscending"
+                                                  Click="CategoryDescscending_Click"/>
+                                    </MenuItem>
+                                    <MenuItem Header="ID NUmber">
+                                        <MenuItem Header="Ascending"
+                                                  Name="IDNumberAscending"
+                                                  Click="IDNumberAscending_Click"/>
+                                        <MenuItem Header="Descending"
+                                                  Name="IDNumberDescscending"
+                                                  Click="IDNumberDescscending_Click"/>
+                                    </MenuItem>
+                                </MenuItem>
+                                <MenuItem Header="Default Sort"
+                                          Name="DefaultSort"
+                                          Click="DefaultSort_Click"/>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                    </ListView>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Borrower"
+                           Grid.Row="0"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Margin="20,0,0,0"/>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Lastname "
+                               Grid.Row="0"
+                               Grid.Column="0"/>
+                        <TextBlock Text="Firstname "
+                               Grid.Row="1"
+                               Grid.Column="0"/>
+                        <TextBlock Text="Gender "
+                               Grid.Row="2"
+                               Grid.Column="0"/>
+                        <TextBlock Text="Borrower Type "
+                               Grid.Row="3"
+                               Grid.Column="0"/>
+                        <TextBlock Text="Date Borrowed "
+                                   Grid.Row="4"
+                                   Grid.Column="0"/>
+                        <TextBlock Text="Date Deadline "
+                                   Grid.Row="5"
+                                   Grid.Column="0"/>
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="1"
+                                   Width="250"
+                                   Background="BlanchedAlmond"
+                                   Text="{Binding Path=SelectedBorrower.BorrowerLastName}"/>
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="1"
+                                   Width="250"
+                                   Background="BlanchedAlmond"
+                                   Text="{Binding Path=SelectedBorrower.BorrowerFirstName}"/>
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="1"
+                                   Width="250"
+                                   Background="BlanchedAlmond"
+                                   Text="{Binding Path=SelectedBorrower.BorrowerGender}"/>
+                        <TextBlock Grid.Row="3"
+                                   Grid.Column="1"
+                                   Width="250"
+                                   Background="BlanchedAlmond"
+                                   Text="{Binding Path=SelectedBorrower.BorrowerType}"/>
+                        <DatePicker Grid.Row="4"
+                                   Grid.Column="1"
+                                   Name="DatePickerDateBorrowed"
+                                   SelectedDate="{Binding Path=bookdateborrowed}"
+                                   SelectedDateFormat="Long"
+                                    SelectedDateChanged="DatePickerDateBorrowed_SelectedDateChanged"
+                                   Width="250"
+                                   Background="BlanchedAlmond"/>
+                        <TextBlock Grid.Row="5"
+                                   Grid.Column="1"
+                                   Name="TextBlockDateDeadline"
+                                   Width="250"
+                                   Background="BlanchedAlmond"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Button Name="ButtonBorrowBook"
+                                Click="ButtonBorrowBook_Click"
+                                Background="#4950DE"
+                                Height="40"
+                                Width="200">
+                            <Button.Content>
+                                <TextBlock Text="Borrow"
+                                           Foreground="White"
+                                           FontSize="30"
+                                           FontWeight="Bold"
+                                           VerticalAlignment="Center"/>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
