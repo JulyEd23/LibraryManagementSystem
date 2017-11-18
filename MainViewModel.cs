@@ -29,9 +29,9 @@ namespace LIBRARYMANAGEMENTPART2
             BORROWERSLIST.Add(new Borrower("Catubog","July","Male","Student",10293, CheckBorrowedBook.NONE.ToString()));
             BORROWERSLIST.Add(new Borrower("Libadisos", "Keiji", "Male", "Student", 62748, CheckBorrowedBook.NONE.ToString()));
             BORROWERSLIST.Add(new Borrower("Yamamoto", "Ryu", "Male", "Teacher", 81639, CheckBorrowedBook.NONE.ToString()));
-            BORROWERSLIST.Add(new Borrower("Salazar", "Lingin", "Female", "Teacher", 72538, CheckBorrowedBook.NONE.ToString()));
+            BORROWERSLIST.Add(new Borrower("Salazar", "Aprilyn", "Female", "Teacher", 72538, CheckBorrowedBook.NONE.ToString()));
             BORROWERSLIST.Add(new Borrower("Jaleco", "Rene", "Male", "Student", 13256, CheckBorrowedBook.NONE.ToString()));
-            BORROWERSLIST.Add(new Borrower("Ottoman", "Gahi", "Male", "Teacher", 12345, CheckBorrowedBook.NONE.ToString()));
+            BORROWERSLIST.Add(new Borrower("Ottoman", "GG", "Male", "Teacher", 12345, CheckBorrowedBook.NONE.ToString()));
             BORROWERSLIST.Add(new Borrower("Ferraren", "Jiji", "Female", "Teacher", 37702, CheckBorrowedBook.NONE.ToString()));
             BORROWERSLIST.Add(new Borrower("Nursing", "Puti", "Female", "Student", 72635, CheckBorrowedBook.NONE.ToString()));
             BORROWERSLIST.Add(new Borrower("Saluage", "Angelito", "Male", "Teacher", 25363, CheckBorrowedBook.NONE.ToString()));
